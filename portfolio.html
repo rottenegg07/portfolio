@@ -1,405 +1,321 @@
-<!--
-File: personal_portfolio.html
-This single-file portfolio contains:
-  - HTML structure using semantic tags
-  - Embedded CSS (you can move it to styles.css)
-  - Embedded JavaScript (you can move it to script.js)
-
-Instructions: Save this file as `index.html` and open in a browser. To split files:
-  - Copy the contents of the <style>...</style> block into styles.css and link it instead.
-  - Copy the contents of the <script>...</script> block into script.js and include it with <script src="script.js" defer></script>
-
-Accessibility & responsive notes are in comments. 
--->
-
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Omor Faruk — Portfolio</title>
-  <meta name="description" content="Portfolio of Omor Faruk — Competitive Programmer and Education Technology student.">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Omor Faruk — 3D Portfolio Book</title>
+    <meta name="description" content="Portfolio of Omor Faruk — Competitive Programmer and Education Technology student.">
+    <!-- BoxIcon -->
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <!-- style -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="cover cover-left"></div>
+      <div class="cover cover-right"></div>
 
-  <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+      <div class="book">
+        <!-- profile page -->
+        <div class="book-page page-left">
+          <div class="profile-page">
+            <img src="image.png" alt="Omor Faruk Profile Picture" />
+            <h1>Omor Faruk</h1>
+            <h3>Competitive Programmer</h3>
 
-  <style>
-  /* ====== styles.css (embedded) ====== */
-  @keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(30px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-  }
-  @keyframes float {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-10px); }
-  }
-  @keyframes pulse {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.05); }
-  }
-  @keyframes slideIn {
-    from { transform: translateX(-100%); }
-    to { transform: translateX(0); }
-  }
-  @keyframes glow {
-    0%, 100% { box-shadow: 0 0 5px rgba(46,134,222,0.3); }
-    50% { box-shadow: 0 0 20px rgba(46,134,222,0.6); }
-  }
-  @keyframes ripple {
-    to { transform: scale(4); opacity: 0; }
-  }
-  .ripple {
-    position: absolute;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.6);
-    transform: scale(0);
-    animation: ripple 0.6s ease-out;
-    pointer-events: none;
-  }
-  
-  :root{
-    --accent:#6b6360;
-    --muted:#f2f1ef;
-    --text:#333;
-    --accent-2:#2e86de;
-    --accent-3:#6366f1;
-    --max-width:1100px;
-    --card-radius:12px;
-  }
-  *{box-sizing:border-box}
-  html{scroll-behavior:smooth}
-  body{
-    margin:0;
-    font-family: Roboto, system-ui, -apple-system, "Segoe UI", Arial;
-    color:var(--text);
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #f5576c 75%, #4facfe 100%);
-    background-size: 400% 400%;
-    animation: gradientShift 15s ease infinite;
-    -webkit-font-smoothing:antialiased;
-    line-height:1.45;
-    padding:24px;
-    position:relative;
-    overflow-x:hidden;
-  }
-  @keyframes gradientShift {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-  }
-  body::before{
-    content:'';
-    position:fixed;
-    top:0;left:0;right:0;bottom:0;
-    background:linear-gradient(180deg,var(--muted),#fff);
-    opacity:0.95;
-    z-index:-1;
-  }
-  .container{max-width:var(--max-width);margin:0 auto;animation:fadeIn 0.8s;}
-
-  header{
-    display:flex;gap:20px;align-items:center;padding:20px 16px;border-radius:var(--card-radius);background:rgba(255,255,255,0.95);backdrop-filter:blur(10px);box-shadow:0 8px 32px rgba(20,20,20,0.1);transition:all 0.3s ease;animation:fadeInUp 0.8s ease-out;
-  }
-  header:hover{transform:translateY(-5px);box-shadow:0 12px 40px rgba(20,20,20,0.15);}
-  .profile-photo{width:120px;height:120px;border-radius:50%;overflow:hidden;flex:0 0 120px;border:4px solid var(--accent-2);}
-  .profile-photo img{width:100%;height:100%;object-fit:cover;display:block;}
-  .hero-info{flex:1}
-  h1{font-family:Montserrat, Roboto;letter-spacing:1px;margin:0;font-size:28px;animation:slideIn 0.8s ease-out;background:linear-gradient(135deg,var(--accent-2),var(--accent-3));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-  .title{color:var(--accent);margin-top:6px;font-weight:500}
-  .tagline{margin-top:10px;color:#666;font-style:italic;}
-  .cta-row{margin-top:14px;display:flex;gap:10px;align-items:center}
-  .btn{background:linear-gradient(135deg,var(--accent-2),var(--accent-3));color:#fff;padding:10px 18px;border-radius:8px;text-decoration:none;font-weight:500;transition:all 0.3s ease;border:none;cursor:pointer;position:relative;overflow:hidden;box-shadow:0 4px 15px rgba(46,134,222,0.3);}
-  .btn::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:rgba(255,255,255,0.2);transition:left 0.3s;}
-  .btn:hover::before{left:100%;}
-  .btn:hover{transform:translateY(-3px);box-shadow:0 6px 20px rgba(46,134,222,0.4);animation:pulse 0.6s;}
-  .btn.secondary{background:transparent;border:2px solid var(--accent-2);color:var(--accent-2);}
-  .btn.secondary:hover{background:var(--accent-2);color:#fff;}
-
-  nav{margin-top:18px;display:flex;gap:10px;flex-wrap:wrap}
-  nav a{color:#666;text-decoration:none;padding:8px 14px;border-radius:8px;transition:all 0.3s ease;position:relative;}
-  nav a::after{content:'';position:absolute;bottom:0;left:50%;width:0;height:2px;background:var(--accent-2);transition:all 0.3s;transform:translateX(-50%);}
-  nav a:hover{background:#f6f6f6;color:var(--accent-2);}
-  nav a:hover::after{width:80%;}
-
-  main{margin-top:22px}
-  .grid{display:grid;grid-template-columns:1fr 360px;gap:20px}
-  @media (max-width:980px){.grid{grid-template-columns:1fr}}
-
-  /* About card */
-  .card{background:rgba(255,255,255,0.9);backdrop-filter:blur(5px);padding:18px;border-radius:10px;box-shadow:0 6px 18px rgba(20,20,20,0.04);transition:all 0.3s ease;animation:fadeInUp 0.8s ease-out;}
-  .card:hover{transform:translateY(-5px);box-shadow:0 12px 30px rgba(20,20,20,0.12);}
-  .about h2{margin-top:0}
-  .icons-row{display:flex;gap:12px;margin-top:12px}
-  .stat{display:flex;align-items:center;gap:8px}
-  .stat .num{font-weight:700;color:var(--accent-2)}
-
-  /* Skills */
-  .skills-list{display:grid;gap:10px}
-  .skill-item{transition:all 0.3s ease;padding:10px;border-radius:8px;line-height:1.6;}
-  .skill-item:hover{background:#f8f9fa;transform:translateX(5px);}
-
-  /* Projects */
-  .projects{display:grid;gap:14px}
-  .project{display:flex;gap:12px;align-items:start;padding:12px;border-radius:8px;border:1px solid #f0f0f0;transition:all 0.3s ease;cursor:pointer;}
-  .project:hover{transform:translateY(-5px);box-shadow:0 8px 20px rgba(20,20,20,0.1);border-color:var(--accent-2);}
-  .project img{width:150px;height:96px;object-fit:cover;border-radius:6px;flex:0 0 150px;transition:transform 0.3s;}
-  .project:hover img{transform:scale(1.05);}
-  .project h3{margin:0 0 6px 0}
-  .project p{margin:0;color:#555}
-  .project .tags{margin-top:8px;display:flex;gap:8px;flex-wrap:wrap}
-  .chip{padding:6px 8px;border-radius:999px;border:1px solid #eee;font-size:13px;transition:all 0.3s ease;cursor:pointer;}
-  .chip:hover{background:var(--accent-2);color:#fff;border-color:var(--accent-2);transform:translateY(-2px);box-shadow:0 4px 8px rgba(46,134,222,0.3);}
-
-  /* Achievements & contact */
-  .right-col{display:flex;flex-direction:column;gap:18px}
-  .achievements h3{color:var(--accent-2);}
-  .achievements .item{border-left:4px solid var(--accent);padding:10px 12px;border-radius:6px;background:linear-gradient(180deg,#fff,#fbfbfb);transition:all 0.3s ease;cursor:pointer;}
-  .achievements .item strong{color:var(--accent-2);}
-  .achievements .item:hover{transform:translateX(5px);box-shadow:0 4px 12px rgba(20,20,20,0.1);}
-  .contact-links{display:flex;flex-direction:column;gap:10px}
-  .contact-links a{display:inline-flex;align-items:center;gap:10px;text-decoration:none;color:#333;transition:all 0.3s ease;padding:8px;border-radius:8px;}
-  .contact-links a:hover{background:#f0f5ff;color:var(--accent-2);transform:translateX(5px);}
-
-  footer{margin-top:24px;padding:14px 8px;text-align:center;color:#777}
-
-  /* Responsive adjustments */
-  @media (max-width:580px){
-    .profile-photo{width:88px;height:88px;flex:0 0 88px}
-    h1{font-size:22px}
-  }
-  /* Form inputs */
-  input, textarea {
-    transition: all 0.3s ease;
-    font-family: inherit;
-  }
-  input:focus, textarea:focus {
-    outline: none;
-    border-color: var(--accent-2) !important;
-    box-shadow: 0 0 0 3px rgba(46,134,222,0.1);
-    transform: translateY(-2px);
-  }
-  input:hover, textarea:hover {
-    border-color: var(--accent-2);
-  }
-  button:active {
-    transform: scale(0.98);
-  }
-  /* Accessibility focus ring */
-  a:focus,button:focus,input:focus,textarea:focus{outline:3px solid rgba(46,134,222,0.18);outline-offset:3px}
-  </style>
-</head>
-<body>
-  <div class="container">
-    <header>
-      <div class="profile-photo" aria-hidden="false">
-        <img src="image.png" alt="myProfilepic">
-      </div>
-
-      <div class="hero-info">
-        <h1>Omor Faruk</h1>
-        <div class="title">Competitive Programmer • Educational Technology Student</div>
-        <div class="tagline">Building productive learning tools and solving algorithmic problems.</div>
-
-        <div class="cta-row">
-          <a class="btn" href="#projects">View Projects</a>
-          <a class="btn secondary" href="#contact">Contact</a>
-        </div>
-
-        <nav aria-label="quick links">
-          <a href="#about">About</a>
-          <a href="#skills">Skills</a>
-          <a href="#achievements">Achievements</a>
-          <a href="#projects">Projects</a>
-        </nav>
-      </div>
-    </header>
-
-    <main>
-      <div class="grid">
-        <section class="card about" id="about" aria-labelledby="about-heading">
-          <h2 id="about-heading">About Me</h2>
-          <p><strong>Educational background:</strong> BSc in Educational Technology and Engineering at University of Frontier Technology Bangladesh (2023-2027). Passionate about educational tools, competitive programming, and product development.</p>
-          <div class="icons-row" role="list">
-            <div class="stat" role="listitem">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4z" fill="#6B6360"/><path d="M4 20v-1c0-2.21 3.58-4 8-4s8 1.79 8 4v1H4z" fill="#6B6360"/></svg>
-              <div><div class="num">Competitive Programmer</div><small>Codeforces & online judges</small></div>
+            <div class="social-media">
+              <a href="https://www.linkedin.com/in/md-omor-faruk-95b069298/" target="_blank" rel="noopener noreferrer"><i class="bx bxl-linkedin-square"></i></a>
+              <a href="https://codeforces.com/profile/rottenegg07" target="_blank" rel="noopener noreferrer"><i class="bx bx-code-alt"></i></a>
+              <a href="mailto:omor0001@std.uftb.ac.bd"><i class="bx bx-envelope"></i></a>
+              <a href="tel:+8801608835250"><i class="bx bx-phone"></i></a>
             </div>
 
-            <div class="stat" role="listitem">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2l5 9H7l5-9zM6 13h12v7H6v-7z" fill="#6B6360"/></svg>
-              <div><div class="num">Education Tech</div><small>Designing tools for learning</small></div>
+            <p>
+              Hi,I am currently studying Educational Technology and Engineering at the University of Frontier Technology Bangladesh and am a Competitive Programmer passionate about developing innovative educational tools and impactful products, having solved hundreds of problems across various online judges, which has strengthened my logical thinking, problem-solving skills, and algorithmic expertise.
+            </p>
+
+            <div class="btn-box">
+              <a href="my cv.pdf" download class="btn">Download CV</a>
+              <a href="#" class="btn contact-me">Contact Me!</a>
             </div>
-          </div>
-
-          <hr style="margin:16px 0;border:none;border-top:1px solid #f0f0f0">
-
-          <h3>Competitive Programming Enthusiast</h3>
-          <p>I have solved hundreds of problems across various online judges, strengthening my logical thinking and problem-solving ability. I am comfortable with <strong>C++ STL</strong>, foundational programming concepts, and <strong>Data Structures & Algorithms</strong>, including major algorithmic patterns used in competitive programming. This experience has helped me build efficiency in writing clean, optimized code under time constraints.</p>
-
-        </section>
-
-        <section class="card" id="experience" style="margin-top:22px">
-          <h2>Job Experience</h2>
-          
-          <div style="margin-top:12px">
-            <h3>Accountant – Ghorer Khabar (Meal Service for University Students)</h3>
-            <p>At Ghorer Khabar, I worked as an Accountant, managing the financial records, daily meal transactions, and payment tracking for university students. I was responsible for maintaining accurate meal counts, calculating individual balances, and ensuring transparent and organized financial reporting.</p>
-          </div>
-
-          <div style="margin-top:18px">
-            <h3>Tech & Infrastructure Lead – E-Sports Wing, UFTB Sports Club</h3>
-            <p>As the Tech and Infrastructure Lead, I was responsible for planning and managing the technical setup for gaming tournaments under the UFTB Sports Club. My role involved ensuring all systems, devices, and network configurations were properly prepared, compatible, and optimized for smooth gameplay. I coordinated equipment setup, match formats, and on-ground troubleshooting to maintain a fair, stable, and professional tournament environment.</p>
-          </div>
-        </section>
-
-        <aside class="right-col" aria-label="sidebar">
-          <div class="card achievements" id="achievements">
-            <h3>Achievements</h3>
-            <div class="item" tabindex="0">
-              <strong>First Runner-up — HULT Prize (2024)</strong>
-              <p style="margin:6px 0 0;color:#555">Recognized for an innovative solution tackling unemployment and promoting women empowerment.</p>
-            </div>
-            <div class="item" style="margin-top:10px" tabindex="0">
-              <strong>Champion — Inter-departmental E-sports (2024)</strong>
-              <p style="margin:6px 0 0;color:#555">Campus FIFA tournament champion demonstrating strategic gameplay.</p>
-            </div>
-          </div>
-
-        </aside>
-
-      </div>
-
-      <!-- Skills & Projects row -->
-      <section style="margin-top:24px">
-        <div class="grid" style="grid-template-columns:1fr 320px;gap:22px">
-          <div class="card" id="skills">
-            <h2>Skills & Expertise</h2>
-            <p>Core competencies and technical skills across various domains.</p>
-
-            <div class="skills-list" style="margin-top:12px">
-              <div class="skill-item">
-                <strong>Competitive Programming</strong> — Problem solving using C++, data structures & algorithms
-              </div>
-
-              <div class="skill-item">
-                <strong>Web Development</strong> — Frontend technologies: HTML5, CSS3, JavaScript
-              </div>
-
-              <div class="skill-item">
-                <strong>AI & Prompt Engineering</strong> — LLM integration and prompt optimization
-              </div>
-
-              <div class="skill-item">
-                <strong>Java & Dart</strong> — Mobile app development with Android and Flutter
-              </div>
-
-              <div class="skill-item">
-                <strong>UI/UX & Prototyping</strong> — User interface design and prototyping tools
-              </div>
-
-            </div>
-
-            <hr style="margin:16px 0;border:none;border-top:1px solid #f0f0f0">
-            <p style="margin:0"><a href="my cv.pdf" download class="btn" id="download-cv">Download CV</a></p>
-          </div>
-
-          <aside class="card" style="height:100%">
-            <h3>Coursework & Tools</h3>
-            <ul style="margin:6px 0 0 18px;color:#555">
-              <li>Data Structures & Algorithms</li>
-              <li>Educational Technology Design</li>
-              <li>Web: HTML5, CSS3, JS</li>
-              <li>Languages: C, C++, Java, Dart</li>
-            </ul>
-
-            <h3 style="margin-top:12px">Certifications</h3>
-            <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:6px">
-              <div class="chip">HULT Prize — 2024</div>
-              <div class="chip">Codeforces — Competitive</div>
-            </div>
-          </aside>
-        </div>
-
-        <!-- Projects -->
-        <div class="card" id="projects" style="margin-top:18px">
-          <h2>Project Gallery</h2>
-          <p>Selected projects — thumbnails are optimized for web (use compressed images in production).</p>
-
-          <div class="projects" style="margin-top:12px">
-            <article class="project" tabindex="0">
-              <img src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder" alt="Lumina - The Inner Compass thumbnail">
-              <div>
-                <h3>Lumina — The Inner Compass (Project Lead)</h3>
-                <p>Lumina is a student-focused mental well-being and career guidance initiative designed to help young learners navigate academic pressure, self-doubt, and career confusion. The project empowers students to understand their interests, strengths, and long-term goals while providing a supportive environment for emotional clarity.</p>
-                <p style="margin-top:10px;margin-bottom:10px;"><strong>We focus on:</strong></p>
-                <ul style="margin:0;padding-left:20px;color:#555">
-                  <li>Guided self-reflection sessions to build self-awareness</li>
-                  <li>Career path exploration workshops tailored to local opportunities</li>
-                  <li>Peer support circles to reduce stress, isolation, and anxiety</li>
-                  <li>Skill-building activities that improve confidence and decision-making</li>
-                </ul>
-                <p style="margin-top:10px;margin-bottom:0;font-style:italic;">Our mission is to help students find clarity, confidence, and direction — turning confusion into purpose, and fear into growth. Lumina acts as a compass, guiding students toward a healthier mindset and a meaningful future.</p>
-                <div class="tags"><span class="chip">UX</span><span class="chip">Research</span></div>
-              </div>
-            </article>
-
-            <article class="project" tabindex="0">
-              <img src="https://images.unsplash.com/photo-1508921239857-1f3a7e0a2a2a?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder" alt="Expense Tracker thumbnail">
-              <div>
-                <h3>Offline Expense Tracker App (Developer)</h3>
-                <p>The Offline Expense Tracker is a lightweight and intuitive financial tracking application created using Flutter and Dart. It enables users to record and manage their daily expenses without requiring internet access, making it reliable and practical in any situation. All data is stored securely on the device to ensure privacy and immediate access.</p>
-                <p style="margin-top:10px;margin-bottom:10px;"><strong>Core Highlights:</strong></p>
-                <ul style="margin:0;padding-left:20px;color:#555">
-                  <li>Simple interface to log, update, or remove expenses</li>
-                  <li>Expense categorization for better financial clarity</li>
-                  <li>Visual summaries to view spending patterns across days, weeks, and months</li>
-                  <li>Fully offline functionality with secure local data storage</li>
-                </ul>
-                <p style="margin-top:10px;margin-bottom:0;font-style:italic;">This project aims to support individuals in developing healthy spending habits, improving financial awareness, and making informed budgeting decisions through a clean, user-centered design.</p>
-                <div class="tags"><span class="chip">Flutter</span><span class="chip">Dart</span></div>
-              </div>
-            </article>
-
           </div>
         </div>
 
-      </section>
+        <!-- page 1 & 2 -->
+        <div class="book-page page-right turn" id="turn-1">
+          <!-- page 1 (work experience) -->
+          <div class="page-front">
+            <h1 class="title">Work Experience</h1>
 
-    </main>
+            <div class="workeduc-box">
+              <div class="workeduc-content">
+                <span class="year"
+                  ><i class="bx bxs-calendar"></i>2023 - Present</span
+                >
+                <h3>Tech & Infrastructure Lead – E-Sports Wing, UFTB Sports Club</h3>
+                <p>
+                  As the Tech and Infrastructure Lead, I was responsible for planning and managing the technical setup for gaming tournaments under the UFTB Sports Club. My role involved ensuring all systems, devices, and network configurations were properly prepared, compatible, and optimized for smooth gameplay. I coordinated equipment setup, match formats, and on-ground troubleshooting to maintain a fair, stable, and professional tournament environment.
+                </p>
+              </div>
 
-    <section class="card contact" id="contact" style="margin-top:24px">
-      <h2>Contact</h2>
-      <div class="contact-links" style="margin-top:12px">
-        <a href="tel:+8801608835250" aria-label="call">📞 +8801608835250</a>
-        <a href="mailto:omor0001@std.uftb.ac.bd" aria-label="email">✉️ omor0001@std.uftb.ac.bd</a>
-        <a href="https://www.linkedin.com/in/md-omor-faruk-95b069298/" target="_blank" rel="noopener noreferrer">🔗 LinkedIn</a>
-        <a href="https://codeforces.com/profile/rottenegg07" target="_blank" rel="noopener noreferrer">💻 Codeforces</a>
+              <div class="workeduc-content">
+                <span class="year"
+                  ><i class="bx bxs-calendar"></i>2022 - 2023</span
+                >
+                <h3>Accountant – Ghorer Khabar (Meal Service for University Students)</h3>
+                <p>
+                  At Ghorer Khabar, I worked as an Accountant, managing the financial records, daily meal transactions, and payment tracking for university students. I was responsible for maintaining accurate meal counts, calculating individual balances, and ensuring transparent and organized financial reporting.
+                </p>
+              </div>
+            </div>
+
+            <!-- next button -->
+            <span class="nextprev-btn" data-page="turn-1">
+              <i class="bx bx-chevron-right"></i>
+            </span>
+          </div>
+
+          <!-- page 2 (education) -->
+          <div class="page-back">
+            <h1 class="title">Education</h1>
+
+            <div class="workeduc-box">
+              <div class="workeduc-content">
+                <span class="year"
+                  ><i class="bx bxs-calendar"></i>2023 - 2027</span
+                >
+                <h3>BSc in Educational Technology and Engineering</h3>
+                <p>
+                  University of Frontier Technology Bangladesh. Passionate about educational tools, competitive programming, and product development. Currently pursuing my degree with focus on designing tools for learning and educational technology solutions.
+                </p>
+              </div>
+
+              <div class="workeduc-content">
+                <span class="year"
+                  ><i class="bx bxs-calendar"></i>Ongoing</span
+                >
+                <h3>Competitive Programming</h3>
+                <p>
+                  Actively solving problems on Codeforces and various online judges. Comfortable with C++ STL, foundational programming concepts, and Data Structures & Algorithms, including major algorithmic patterns used in competitive programming.
+                </p>
+              </div>
+
+              <div class="workeduc-content">
+                <span class="year"
+                  ><i class="bx bxs-calendar"></i>Coursework</span
+                >
+                <h3>Key Courses</h3>
+                <p>
+                  Data Structures & Algorithms, Educational Technology Design, Web Development (HTML5, CSS3, JavaScript), Programming Languages (C, C++, Java, Dart), UI/UX & Prototyping.
+                </p>
+              </div>
+            </div>
+
+            <!-- prev button -->
+            <span class="nextprev-btn back" data-page="turn-1">
+              <i class="bx bx-chevron-left"></i>
+            </span>
+          </div>
+        </div>
+
+
+        <!-- page 3 & 4 -->
+        <div class="book-page page-right turn" id="turn-2">
+          <!-- page 3 (my services) -->
+          <div class="page-front">
+            <h1 class="title">My Services</h1>
+
+            <div class="services-box">
+              <div class="services-content">
+                <i class="bx bx-code-alt"></i>
+                <h3>Web Development</h3>
+                <p>
+                  Frontend technologies: HTML5, CSS3, JavaScript. Building responsive and accessible web applications.
+                </p>
+                <a href="#projects" class="btn">Read More</a>
+              </div>
+
+              <div class="services-content">
+                <i class="bx bx-mobile-alt"></i>
+                <h3>Mobile App Development</h3>
+                <p>
+                  Mobile app development with Android and Flutter using Java and Dart programming languages.
+                </p>
+                <a href="#projects" class="btn">Read More</a>
+              </div>
+
+              <div class="services-content">
+                <i class="bx bx-brain"></i>
+                <h3>AI & Prompt Engineering</h3>
+                <p>
+                  LLM integration and prompt optimization for educational tools and productivity applications.
+                </p>
+                <a href="#projects" class="btn">Read More</a>
+              </div>
+
+              <div class="services-content">
+                <i class="bx bx-code-curly"></i>
+                <h3>Competitive Programming</h3>
+                <p>
+                  Problem solving using C++, data structures & algorithms. Efficient code optimization and algorithmic thinking.
+                </p>
+                <a href="https://codeforces.com/profile/rottenegg07" target="_blank" class="btn">View Profile</a>
+              </div>
+            </div>
+
+            <!-- next button -->
+            <span class="nextprev-btn" data-page="turn-2">
+              <i class="bx bx-chevron-right"></i>
+            </span>
+
+          </div>
+          <!-- page 4 (my skills & achievements) -->
+          <div class="page-back">
+            <h1 class="title">Skills & Achievements</h1>
+
+            <div class="skills-box">
+              <div class="skills-content">
+                <h3>Front-End</h3>
+                <div class="content">
+                  <span><i class="bx bxl-html5"></i> HTML</span>
+                  <span><i class="bx bxl-css3"></i>CSS</span>
+                  <span><i class="bx bxl-javascript"></i>JS</span>
+                </div>
+              </div>
+
+              <div class="skills-content">
+                <h3>Back-End & Mobile</h3>
+                <div class="content">
+                  <span><i class="bx bxl-java"></i>Java</span>
+                  <span><i class="bx bx-code-alt"></i>C++</span>
+                  <span><i class="bx bx-mobile-alt"></i>Flutter</span>
+                  <span><i class="bx bx-code-curly"></i>Dart</span>
+                </div>
+              </div>
+
+              <div class="skills-content">
+                <h3>Other Skills</h3>
+                <div class="content">
+                  <span><i class="bx bx-brain"></i>AI/LLM</span>
+                  <span><i class="bx bx-palette"></i>UI/UX</span>
+                  <span><i class="bx bx-code-curly"></i>DSA</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="achievements-section">
+              <h3 style="margin-top: 1.5rem; color: var(--main-color);">Achievements</h3>
+              <div class="achievement-item">
+                <strong>First Runner-up — HULT Prize (2024)</strong>
+                <p>Recognized for an innovative solution tackling unemployment and promoting women empowerment.</p>
+              </div>
+              <div class="achievement-item">
+                <strong>Champion — Inter-departmental E-sports (2024)</strong>
+                <p>Campus FIFA tournament champion demonstrating strategic gameplay.</p>
+              </div>
+            </div>
+
+            <!-- next button -->
+            <span class="nextprev-btn back" data-page="turn-2">
+              <i class="bx bx-chevron-left"></i>
+            </span>
+          </div>
+        </div>
+
+            <!-- page 5 & 6 -->
+            <div class="book-page page-right turn" id="turn-3">
+                <!-- page 5 (latest project) -->
+                <div class="page-front">
+                    <h1 class="title">Latest Projects</h1>
+
+                    <div class="portfolio-box">
+                        <div class="img-box">
+                            <img src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder" alt="Lumina Project">
+                        </div>
+
+                        <div class="info-box">
+                            <div class="info-title">
+                                <h3>Lumina — The Inner Compass</h3>
+                            </div>
+                            <p><strong>Tech Used:</strong> UX Research, Design Thinking</p>
+                            <p>Lumina is a student-focused mental well-being and career guidance initiative designed to help young learners navigate academic pressure, self-doubt, and career confusion. The project empowers students to understand their interests, strengths, and long-term goals while providing a supportive environment for emotional clarity.</p>
+                        </div>
+                    </div>
+
+                    <div class="portfolio-box" style="margin-top: 1.5rem;">
+                        <div class="img-box">
+                            <img src="https://images.unsplash.com/photo-1508921239857-1f3a7e0a2a2a?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder" alt="Expense Tracker App">
+                        </div>
+
+                        <div class="info-box">
+                            <div class="info-title">
+                                <h3>Offline Expense Tracker App</h3>
+                            </div>
+                            <p><strong>Tech Used:</strong> Flutter, Dart</p>
+                            <p>The Offline Expense Tracker is a lightweight and intuitive financial tracking application created using Flutter and Dart. It enables users to record and manage their daily expenses without requiring internet access.</p>
+                        </div>
+                    </div>
+
+                    <!-- next button -->
+                    <span class="nextprev-btn" data-page="turn-3">
+                      <i class="bx bx-chevron-right"></i>
+                    </span>
+                </div>
+
+
+                <!-- page 6 (contact me!) -->
+                <div class="page-back">
+                    <h1 class="title">Contact Me!</h1>
+
+                    <div class="contact-box">
+                      <div class="contact-links" style="margin-bottom: 2rem;">
+                        <a href="tel:+8801608835250" style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem; color: var(--text-color); text-decoration: none;">
+                          <i class="bx bx-phone" style="color: var(--main-color); font-size: 1.5rem;"></i>
+                          <span>+8801608835250</span>
+                        </a>
+                        <a href="mailto:omor0001@std.uftb.ac.bd" style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem; color: var(--text-color); text-decoration: none;">
+                          <i class="bx bx-envelope" style="color: var(--main-color); font-size: 1.5rem;"></i>
+                          <span>omor0001@std.uftb.ac.bd</span>
+                        </a>
+                        <a href="https://www.linkedin.com/in/md-omor-faruk-95b069298/" target="_blank" rel="noopener noreferrer" style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem; color: var(--text-color); text-decoration: none;">
+                          <i class="bx bxl-linkedin-square" style="color: var(--main-color); font-size: 1.5rem;"></i>
+                          <span>LinkedIn</span>
+                        </a>
+                        <a href="https://codeforces.com/profile/rottenegg07" target="_blank" rel="noopener noreferrer" style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem; color: var(--text-color); text-decoration: none;">
+                          <i class="bx bx-code-alt" style="color: var(--main-color); font-size: 1.5rem;"></i>
+                          <span>Codeforces</span>
+                        </a>
+                      </div>
+
+                      <form action="" id="contact-form">
+                        <input type="text" class="field" placeholder="Full Name" required>
+                        <input type="email" class="field" placeholder="Email Address" required>
+                        <textarea name="" id="" cols="30" rows="10" class="field" placeholder="Your Message"></textarea>
+                        <input type="submit" value="Send Message" class="btn">
+                      </form>
+                      <div id="form-msg" style="margin-top: 1rem; color: var(--main-color); text-align: center;"></div>
+                    </div>
+
+
+                    <!-- next button -->
+                    <span class="nextprev-btn back" data-page="turn-3">
+                      <i class="bx bx-chevron-left"></i>
+                    </span>
+
+                    <a href="#" class="back-profile">
+                      <p>Profile</p>
+                      <i class="bx bxs-user"></i>
+                    </a>
+                </div>
+
+            </div>
       </div>
-      <hr style="margin:16px 0;border:none;border-top:1px solid #f0f0f0">
-      <form id="contact-form" novalidate>
-        <label for="name">Name</label>
-        <input id="name" name="name" required aria-required="true" placeholder="Your name" style="width:100%;padding:8px;margin-top:6px;border-radius:6px;border:1px solid #e6e6e6">
-
-        <label for="email" style="margin-top:10px;display:block">Email</label>
-        <input id="email" type="email" name="email" required aria-required="true" placeholder="you@example.com" style="width:100%;padding:8px;margin-top:6px;border-radius:6px;border:1px solid #e6e6e6">
-
-        <label for="message" style="margin-top:10px;display:block">Message</label>
-        <textarea id="message" name="message" rows="3" placeholder="Short message" style="width:100%;padding:8px;margin-top:6px;border-radius:6px;border:1px solid #e6e6e6"></textarea>
-
-        <button type="submit" class="btn" style="margin-top:10px">Send</button>
-        <div id="form-msg" role="status" aria-live="polite" style="margin-top:8px;color:#2d7a2d"></div>
-      </form>
-    </section>
-
-    <footer>
-      <div>© <strong>Omor Faruk</strong> — Built with HTML5, CSS & JavaScript • Accessible & responsive design</div>
-    </footer>
-  </div>
+    </div>
 
     <!-- script -->
     <script src="script.js"></script>
-</body>
+  </body>
 </html>
